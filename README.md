@@ -7,8 +7,8 @@
 CRuMBCaKe is a MATLAB package for Bayesian linear modeling.  It stands for Censored Regression Modeling using Bayesian methods with Conditional heterosKedasticity.  Currently, it is capable of implementing Normal, Binomial, and "heavy-tailed" Student's t models.
 
 
-## What is it for?
-CRuMBCaKe handles cases of **data censoring** (where measurements are bounded on one or both ends) and **conditional heteroskedasticity** (where variance is a function of one or more independent variables).
+## What is it good for?
+CRuMBCaKe handles cases of **data censoring** (where measurements are bounded on one or both ends) and **conditional heteroskedasticity** (where variance is a function of one or more independent variables).  It takes a Bayesian approach to model fitting, using Markov Chain Monte Carlo (via slice sampling) to sample from parameter posterior distributions.  This has a number of advantages over standard Maximum Likelihood Estimation methods, like being able to include prior information about parameters into the model and the ability to construct conditional parameter estimates from posterior distributions.
 
 ### An example
 Let's say we're interested in determining how a certain drug affects cognitive performance in a task.  Being good little experimentalists, we recruit some participants and randomly assign half of them to the drug group and half to placebo.  We then give them a cognitive test, grade it, and collect the scores.  We're really excited to run some statistical tests on our data, but we notice two issues that make the data difficult to interpret by typical methods: 1) the test seems to be too easy and many of the participants in both groups got perfect scores; and 2) the variance of scores from the drug group is much larger than placebo.
@@ -27,3 +27,9 @@ addpath(genpath('/local/path/to/crumbcake'))
 
 ## Usage
 Usage examples to come...
+
+## Contributors
+CRuMBCaKe was written, and is maintained, by Kyle Honegger (Harvard University).
+
+## License
+Use according to MIT License.  See LICENSE for more details.
