@@ -1,6 +1,8 @@
 # CRuMBCaKe
 
-![CRuMBCaKe](https://cdn.rawgit.com/khonegger/crumbcake/master/crmbck_icon.svg)
+<img src="https://cdn.rawgit.com/khonegger/crumbcake/master/crmbck_icon.svg" width="100%" height="256">
+
+
 ## What is it?
 CRuMBCaKe is a MATLAB package for Bayesian linear modeling.  It stands for Censored Regression Modeling using Bayesian methods with Conditional heterosKedasticity.  Currently, it is capable of implementing Normal, Binomial, and "heavy-tailed" Student's t models.
 
