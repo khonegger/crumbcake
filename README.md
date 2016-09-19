@@ -1,6 +1,6 @@
 # CRuMBCaKe
 
-<img src="https://cdn.rawgit.com/khonegger/crumbcake/master/crmbck_icon2.svg" width="100%" height="256">
+<img src="https://cdn.rawgit.com/khonegger/crumbcake/master/crmbck_icon_two.svg" width="100%" height="256">
 
 
 ## What is it?
