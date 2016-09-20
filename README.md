@@ -28,7 +28,7 @@ addpath(genpath('/local_path_to/crumbcake'))
 ```
 
 ## Usage
-Getting started with CRuMBCaKe is pretty easy.  After adding the **crumbcake** directory to MATLAB's path, we can pass a properly formatted data matrix (more about that below) to the `crmbck` function and get back a Bayes Linear Model (blm) object containing the model parameters Markov chain and associated methods (well, technically function handles since the blm object right now is just a structured array).
+Getting started with CRuMBCaKe is pretty easy.  After adding the **crumbcake** directory to MATLAB's path, we can pass a properly formatted data matrix (more about that below) to the `crmbck` function and get back a Bayes Linear Model (blm) object containing the Markov chain with model parameter estimates and associated methods (well, technically function handles since the blm object right now is just a structured array).
 
 ### Input data formatting
 CRuMBCaKe expects a matrix with a specific structure.  The observations must be arranged as rows and variables as columns.  If you'd like the model to fit an intercept term (highly recommended) include a column of ones as the first column of the matrix:
@@ -37,15 +37,19 @@ my_data_with_intercept = [ones(size(my_data,1),1) my_data];
 ```
 If you'd like the model to fit an(y) interaction term(s), append the product of the two categorical variables as a new column:
 ```
-my_data_with_X1_x_X2_interaction = [my_data, my_data(:,1) .* my_data(:,2)];
+my_data_with_X1_x_X2_interaction = [my_data my_data(:,1).*my_data(:,2)];
 ```
-The **final column** must contain the dependent (aka outcome, response, predicted) variable data.
+The **final column** must correspond to the dependent (a.k.a. outcome, response, predicted) variable.
 
 ### Example using simulated data
-We'll use the fuction `crumbTestData` included in the package to simulate some data.
+We'll use the fuction `crumbTestData` included in the repo to simulate some data:
+```
+test_data = crumbTestData('normal', 0.7, 0.1, [-Inf 1], 1e3);
+```
+This will create a test dataset with 1000 simulated outcomes.  We've specified that the data be drawn from a normal distribution with overall mean of 0.5 and standard deviation of 0.1.  The `[-Inf 1]` gives the censoring interval - any simulated values greater than 1 will be set to one.
 
 ## Contributors
 CRuMBCaKe was written by, and is maintained by, Kyle Honegger (Harvard University).
 
 ## License
-Use according to MIT License.  See LICENSE for more details.
+Released under MIT License.  See LICENSE for more details.
