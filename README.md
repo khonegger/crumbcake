@@ -4,11 +4,11 @@
 
 
 ## What is it?
-CRuMBCaKe is a MATLAB package for Bayesian linear modeling.  It stands for **C**ensored **R**egression **M**odeling using **B**ayesian methods with **C**onditional Heteros**k**edasticity.  Currently, it is capable of implementing Normal, Binomial, and "heavy-tailed" Student's t models.
+CRuMBCaKe is a MATLAB package for Bayesian linear modeling.  It stands for **C**ensored **R**egression **M**odeling using **B**ayesian methods with **C**onditional Heteros**k**edasticity.  Currently, it is capable of implementing models with Normal, Binomial, and "heavy-tailed" Student's t distributions.
 
 
 ## What is it good for?
-CRuMBCaKe handles cases of **data censoring** (where measurements are bounded on one or both ends) and **conditional heteroskedasticity** (where variance is a function of one or more independent variables).  It takes a Bayesian approach to model fitting, using Markov Chain Monte Carlo to sample from parameter posterior distributions (via slice sampling).  This has a number of advantages over standard Maximum Likelihood Estimation methods, like being able to include prior information about parameters into the model and the ability to construct conditional posteriors.
+CRuMBCaKe does vanilla linear modeling right out of the box, *plus* it handles cases of **data censoring** (where measurements are bounded on one or both ends) and **conditional heteroskedasticity** (where variance is a function of one or more independent variables) when you tell it to.  It takes a Bayesian approach to model fitting, using a Markov Chain Monte Carlo process to sample from parameter posterior distributions (via slice sampling).  This has a number of advantages over traditional Maximum Likelihood Estimation methods, like being able to include prior information about parameters into the model and the ability to construct conditional posterior distributions.
 
 ### An example
 Let's say we're interested in determining how a certain drug affects cognitive performance in a task.  Being good experimentalists, we recruit some participants and randomly assign half of them to the drug group and half to placebo.  We then give them a cognitive test, grade it, and collect the scores.  We're really excited to run some statistical tests on our data, but we notice two issues that make the data difficult to interpret by typical methods: 1) the cognitive test seems to be too easy and many of the participants in both groups got perfect scores; and 2) the variance of scores from the drug group is much larger than placebo.
