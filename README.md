@@ -4,7 +4,7 @@
 
 
 ## What is it?
-CRuMBCaKe is a MATLAB package for Bayesian linear modeling.  It stands for Censored Regression Modeling using Bayesian methods with Conditional heterosKedasticity.  Currently, it is capable of implementing Normal, Binomial, and "heavy-tailed" Student's t models.
+CRuMBCaKe is a MATLAB package for Bayesian linear modeling.  It stands for **C**ensored **R**egression **M**odeling using **B**ayesian methods with **C**onditional Heteros**k**edasticity.  Currently, it is capable of implementing Normal, Binomial, and "heavy-tailed" Student's t models.
 
 
 ## What is it good for?
