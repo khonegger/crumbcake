@@ -3,6 +3,18 @@
 <img src="https://cdn.rawgit.com/khonegger/crumbcake/master/proj_ico.svg" height="180">
 
 
+## Contents
+* [What is it?](#what-is-it)
+* [What is it good for?](#what-is-it-good-for)
+ * [Example 1](#an-example---obscured-treatment-effects)
+ * [Example 2](#another-example---estimating-interaction-effects-on-variance)
+* [Getting started with CRuMBCaKe](#getting-started)
+ * [Installation](#installation-in-matlab)
+ * [Data formatting](#input-data-formatting)
+ * [Example using simulated data](#example-using-simulated-data)
+* [Contributors](#contributors)
+* [License](#license)
+
 ## What is it?
 CRuMBCaKe is a MATLAB package for Bayesian linear modeling.  It stands for **C**ensored **R**egression **M**odeling using **B**ayesian methods with **C**onditional Heteros**k**edasticity.  Currently, it supports modeling with Normal, Binomial, and "heavy-tailed" Student's *t*-distributions.
 
