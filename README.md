@@ -12,6 +12,10 @@
  * [Installation](#installation-in-matlab)
  * [Data formatting](#input-data-formatting)
  * [Example using simulated data](#example-using-simulated-data)
+   * [Simulate data](#simulate-data)
+   * [Fitting a model](#fitting-a-model)
+   * [Model diagnostics](#model-diagnostics)
+* [Limited functionality](#limited-functionality-note)
 * [Contributors](#contributors)
 * [License](#license)
 
@@ -81,7 +85,7 @@ histogram(data(data(:,2)==0,3),linspace(0,1,20))
 histogram(data(data(:,2)==1,3),linspace(0,1,20))
 ```
 
-<img src="figure1.png" height="180">
+<img src="figure1.png" width="800">
 
 We can see that the treatment group (shown in red) has a higher mean and larger variance than the control (in blue). In addition, the treatment group seems to be seriously impacted by censoring at `1`, apparent in the pileup observed on the right end.
 
@@ -96,7 +100,7 @@ The `blm` object returned contains information about the fitted Bayesian linear 
 ```
 blm.plot()
 ```
-<img src="figure2.png" height="180">
+<img src="figure2.png" width="800">
 
 We can see that by the end of the sampling process, the chain seems to have converged on stable estimates of each parameter. In this example, the blue trace represents model estimates of the baseline mean ("true" simulated value = `0.5`), the red estimates the treatment effect on the mean (simulated value = `0.2`), yellow is the baseline variance (simulated value = `0.02`), and purple is the treatment effect on variance (simulated value = `0.02`).  Just from visual inspection, the chain looks like it converged on estimates very near to the "true" parameter values.  We can confirm this by calculating the median values of each parameter across the length of the chain:
 ```
