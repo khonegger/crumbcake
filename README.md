@@ -22,6 +22,8 @@
 ## What is it?
 CRuMBCaKe is a MATLAB package for Bayesian linear modeling.  It stands for **C**ensored **R**egression **M**odeling using **B**ayesian methods with **C**onditional Heteros**k**edasticity.  Currently, it supports modeling with Normal, Binomial, and "heavy-tailed" Student's *t*-distributions.
 
+*Note: This package requires MATLAB's Statistics Toolbox (for pre-R2015a releases) or the Statistics and Machine Learning Toolbox (for post-2014b releases). CRuMBCaKe will not work without it.*
+
 
 ## What is it good for?
 CRuMBCaKe does vanilla linear modeling right out of the box, *plus* it handles cases of **data censoring** (where measurements are bounded on one or both ends) and **conditional heteroskedasticity** (where variance is a function of one or more independent variables) when you tell it to.  This makes it great for situations in which measurement dynamic range is smaller than the range of the data - so-called "data censoring."  It's also great for situations where we are specifically interested in modeling the effects of different factors on variance, in addition to the mean.  
