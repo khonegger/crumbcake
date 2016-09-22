@@ -6,15 +6,15 @@
 ## Contents
 * [What is it?](#what-is-it)
 * [What is it good for?](#what-is-it-good-for)
- * [Example 1](#an-example---obscured-treatment-effects)
- * [Example 2](#another-example---estimating-interaction-effects-on-variance)
+  * [Example 1](#an-example---obscured-treatment-effects)
+  * [Example 2](#another-example---estimating-interaction-effects-on-variance)
 * [Getting started with CRuMBCaKe](#getting-started)
- * [Installation](#installation-in-matlab)
- * [Data formatting](#input-data-formatting)
- * [Example using simulated data](#example-using-simulated-data)
-   * [Simulate data](#simulate-data)
-   * [Fitting a model](#fitting-a-model)
-   * [Model diagnostics](#model-diagnostics)
+  * [Installation](#installation-in-matlab)
+  * [Data formatting](#input-data-formatting)
+  * [Example using simulated data](#example-using-simulated-data)
+    * [Simulate data](#simulate-data)
+    * [Fitting a model](#fitting-a-model)
+    * [Model diagnostics](#model-diagnostics)
 * [Limited functionality](#limited-functionality-note)
 * [Contributors](#contributors)
 * [License](#license)
@@ -42,7 +42,7 @@ Let's say we're pretty sure that our drug treatment is having some effect on sco
 ### Installation in MATLAB
 Installing MATLAB packages is straightforward.  Simply clone (or download) the repository to your local machine and add the **crumbcake** package, with subdirectories, to MATLAB's path.  In MATLAB type:
 ```
-addpath(genpath('/local_path_to/crumbcake'))
+addpath( genpath('/local_path_to/crumbcake') )
 ```
 obviously replacing `'/local_path_to/` with the location of the directory on your machine.
 
@@ -85,7 +85,7 @@ histogram(data(data(:,2)==0,3),linspace(0,1,20))
 histogram(data(data(:,2)==1,3),linspace(0,1,20))
 ```
 
-<img src="figure1.png" width="800">
+<img src="img/figure1.png" width="800">
 
 We can see that the treatment group (shown in red) has a higher mean and larger variance than the control (in blue). In addition, the treatment group seems to be seriously impacted by censoring at `1`, apparent in the pileup observed on the right end.
 
@@ -100,16 +100,16 @@ The `blm` object returned contains information about the fitted Bayesian linear 
 ```
 blm.plot()
 ```
-<img src="figure2.png" width="800">
+<img src="img/figure2.png" width="800">
 
-We can see that by the end of the sampling process, the chain seems to have converged on stable estimates of each parameter. In this example, the blue trace represents model estimates of the baseline mean ("true" simulated value = `0.5`), the red estimates the treatment effect on the mean (simulated value = `0.2`), yellow is the baseline variance (simulated value = `0.02`), and purple is the treatment effect on variance (simulated value = `0.02`).  Just from visual inspection, the chain looks like it converged on estimates very near to the "true" parameter values.  We can confirm this by calculating the median values of each parameter across the length of the chain:
+We can see that by the end of the sampling process, the chain seems to have converged on stable estimates of each parameter. In this example, the blue trace represents model estimates of the baseline mean ("true" simulated value = `0.5`), the red estimates the treatment effect on the mean (simulated value = `0.2`), yellow is the baseline variance (simulated value = `0.02`), and purple is the treatment effect on variance (simulated value = `0.02`).  Just from visual inspection, we can tell that the chain converged to estimates very near to the "true" parameter values.  We can confirm this by calculating the median values of each parameter across the length of the chain:
 ```
 coef_medians = median(blm.coeffs(2000:end,:));
 ```
-This should report values close to the "true" simulation parameter values: `[0.5 0.2 0.02 0.02]`.
+This should report values close to the "true" parameter values from the simulation: `[0.5 0.2 0.02 0.02]`.
 
 #### Model diagnostics
-There are two important things to note about the chain. First, it takes about 1,000 steps for the chain to converge.  This is known as the **burn-in period**.  The parameter estimates from these initial steps are generally discarded from the final distributions, since they are more reflective of the chain's initial conditions than the Markov sampling process.  Second, it's clear that each step in the chain is not fully independent of the previous step - that is, the chain displays some amount of **autoregression**.  Depending on the severity, it may be necessary to *thin* the chain by downsampling and running for longer to get the same total number of steps. Basic methods for diagnosing and addressing these issues are discussed below.
+There are two important things to note about the chain. First, it takes about 1,000 steps for the chain to converge.  This is known as the **burn-in period**.  The parameter estimates from these initial steps are generally discarded from the final distributions, since they are more reflective of the chain's initial conditions than the Markov sampling process.  Second, it's clear that each step in the chain is not fully independent from the previous step - that is, the chain displays some amount of **autoregression**.  Depending on the severity, it may be necessary to *thin* the chain by downsampling and running for longer to get the same total number of steps. Basic methods for diagnosing and addressing these issues are discussed below.
 
 More to come...
 

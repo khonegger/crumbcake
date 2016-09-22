@@ -1,77 +1,68 @@
-function log_likelihood = bayesLL(data, model_specs, var_labels)
+function log_likelihood = bayesLL(data, model_specs)
 %BAYESLL Compute log likelihood of data given a specified model.
-%   LOG_LIKELIHOOD = bayesLL(data, model_specs, var_labels) returns the 
+%   LOG_LIKELIHOOD = BAYESLL(DATA, MODEL_SPECS) returns the 
 %   log likelihood of DATA, under a model specified by MODEL_SPECS 
 %   structure.
+%
+%   DATA is an m by n+1 matrix of observed values, where m is the number of
+%   observations and n is the number of factors to include in the model.
+%   The last column of DATA should be the dependent (outcome) variable. To
+%   include an intercept term in the model, append a vector of 1's to the
+%   first column. To include an interaction term, include the product of
+%   the two factors as its own column. For example, the DATA matrix for a
+%   model with the form 'y ~ 1 + x1 + x2 + x1*x2' should have 5 columns.
+%   Each of the first 4 columns will correspond to one pair (beta and
+%   gamma) of model coefficients for: the intercept, variable x1, variable
+%   x2, and the x1*x2 interaction, respectively. Column 5 contains the
+%   outcome (predicted) variable, y.
+%
+%   MODEL_SPECS is a structure containing the fields:
+% 
+%   'coeffs' - A 2 by n array of model coefficients. First row contains
+%              beta coefficients (mean) and second row contains gamma
+%              coefficients (dispersion).
+% 
+%   'family' - String specifying model family. Valid distributions are:
+%   
+%              'normal'   - normal distribution (default)
+%              't'        - Student's t distribution (location-scale form)
+%              'binomial' - binomial distribution (not yet implemented)
+% 
+%   'shape'  - Scalar "nu" deg. of freedom parameter. Required only for t
+%             distribution. Ignored otherwise.
+% 
+%   'censor' - Vector (optional) specifying the interval over which data
+%              censoring is expected. 'Censor' is a 2 element vector
+%              specifying the left and right data boundaries, e.g. [0,1].
+%              If empty, defaults to [-Inf Inf] with no censoring assumed.
+% 
+%  'form'   - ** This is not implemented yet! **                           - KH160908
+%             String (optional) specifying form of the regression model
+%             according to standard R-style notation, e.g.:
+%                 'y ~ 1 + x1 + x2 + x1*x2'
+%             When 'form' is set, variables not included in the string
+%             will not be included in the model. If intercept is desired,
+%             '1' must be entered as a term in the model.
+%
+%
+%     Kyle Honegger, Harvard University
+%     h------r@fas.harvard.edu
+% 
+%     Version: v0.1
+%     Last modified: Sept 22, 2016
+% 
+%     Revision history:
+%     16/09/XX:   v0.1 completed
+%     --
 
 %{
-  DATA is an m by n+1 matrix of observed values, where m is the number of
-  observations and n is the number of factors to include in the model. The
-  last column of DATA should be the dependent (outcome) variable. To
-  include an intercept term in the model, append a vector of 1's to the
-  first column. To include an interaction term, include the product of the
-  two factors as its own column. For example, the DATA matrix for a model
-  with the form 'y ~ 1 + x1 + x2 + x1*x2' should have 5 columns. Each of
-  the first 4 columns will correspond to one pair (beta and gamma) of model
-  coefficients for: the intercept, variable x1, variable x2, and the x1*x2
-  interaction, respectively. Column 5 contains the outcome (predicted)
-  variable, y.
-
-
-  MODEL_SPECS is a structure containing the fields:
-
-   'coeffs' - A 2 by n array of model coefficients. First row contains
-              beta coefficients (mean) and second row contains gamma
-              coefficients (dispersion).
-
-   'family' - String specifying model family. Valid distributions are:
-
-              'normal'   - normal distribution (default)
-              't'        - Student's t distribution (location-scale form)
-              'binomial' - binomial distribution
-
-   'shape'  - Scalar "nu" deg. of freedom parameter. Required only for t
-              distribution. Ignored otherwise.
-
-   'censor' - Vector (optional) specifying the interval over which data
-              censoring is expected. 'Censor' is a 2 element vector
-              specifying the left and right data boundaries, e.g. [0,1].
-              If empty, defaults to [-Inf Inf] with no censoring assumed.
-
-   'form'   - ** This is not implemented yet! **                           - KH160908A
-              String (optional) specifying form of the regression model
-              according to standard R-style notation, e.g.:
-                  'y ~ 1 + x1 + x2 + x1*x2'
-              When 'form' is set, variables not included in the string
-              will not be included in the model. If intercept is desired,
-              '1' must be entered as a term in the model.
-
-
-  VAR_LABELS (optional) is a cell array containing a label for each
-  variable.  Right now, this does nothing, but will eventually allow
-  arbitrary column assignment of predictors, intercept, and outcome.
-
-
-  Kyle Honegger, Harvard University
-  h------r@fas.harvard.edu
-
-  Version: v0.1
-  Last modified: Sept 15, 2016
-
-  Revision history:
-  16/09/XX:   v0.1 completed
-  --
-
-
-  Notes:
-
+  To do:
+            1.  Implement binomial model
 %}
 
 
-
-
-% Check inputs and set defaults, if needed
-% -----------------------------------------
+% -----------------------------------------     -KH160922 too much overhead
+% Check inputs and set defaults, if needed       move to invoking function
 
 if ~isfield(model_specs,'coeffs')
     % Model coefficients are absolutely needed
@@ -235,7 +226,9 @@ stack.  DO NOT change output variable names.
                 
             case 'binomial'
                 
-                out = @(b) [];
+                error('BINOMIAL FAMILY DOES NOT WORK YET!')
+                
+                % out = @(b) [];
         end
         
     end
