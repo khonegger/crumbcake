@@ -122,4 +122,4 @@ CRuMBCaKe is still very much a work in progress.  At the moment, some features a
 CRuMBCaKe was written by, and is maintained by, Kyle Honegger (de Bivort Lab @ Harvard).
 
 ## License
-Released under the MIT License.  See LICENSE for more details.
+MIT License.  See LICENSE for more details.
